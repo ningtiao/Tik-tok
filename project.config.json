@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -13,7 +13,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.2",
-	"appid": "wx83769e4c6397f2bb",
+	"appid": "touristappid",
 	"projectname": "tik-tok",
 	"debugOptions": {
 		"hidedInDevtools": []

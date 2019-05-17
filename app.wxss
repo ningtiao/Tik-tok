@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import 'style/weui.wxss';
 .container {
   height: 100%;
   display: flex;
@@ -8,3 +9,19 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.nodata image{
+  width: 203rpx;
+  height: 158rpx;
+}
+.nodata{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 300rpx;
+}
+.center{
+  text-align: center;
+  font-size: 16px;
+  padding: 10rpx;
+  color: #A8A8A8
+}

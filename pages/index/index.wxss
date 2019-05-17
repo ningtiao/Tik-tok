@@ -4,7 +4,7 @@ page {
   width: 100vw;
   position: fixed;
 }
-.container {
+.container1 {
   height: 100vh;
   width: 100vw;
 }
@@ -34,7 +34,7 @@ page {
   position: relative;
   height: 100vh;
   width: 100vw;
-  background-color: #000;
+  /* background-color: #000; */
 }
 .animation-image {
   height: 100vh;
@@ -43,4 +43,293 @@ page {
 }
 .animationPre {
   transform: translateY(-100%);
+}
+
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.page-body {
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: block;
+}
+
+/* 播放按钮  */
+
+.icon-box {
+  position: relative;
+  margin: 0 auto;
+  width: 200rpx;
+  height: 100%;
+}
+
+.icon-play {
+  position: absolute;
+  display: block;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 200rpx;
+  height: 200rpx;
+}
+
+/* 进度条  */
+
+.jindu {
+  position: fixed;
+  bottom: 100rpx;
+  height: 5rpx;
+  background-color: white;
+}
+
+.jindu-back {
+  position: fixed;
+  bottom: 100rpx;
+  width: 100%;
+  height: 5rpx;
+  background-color: gray;
+}
+
+/* 刷新按钮 */
+
+.reload {
+  position: absolute;
+  left: 5rpx;
+  top: 10rpx;
+  height: 100px;
+}
+
+/* 右侧区域  */
+.tools {
+  display: flex;
+  position: fixed;
+  right: 5rpx;
+  top: 315rpx;
+  /* height: 300px; */
+  flex-direction: column;
+}
+
+/* 头像  */
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.icon {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.right-icon {
+  margin: 20rpx 25rpx 0rpx;
+}
+
+.text {
+  color: white;
+  /* width: 100rpx; */
+  text-align: center;
+  margin: 0rpx 20rpx;
+}
+
+.desc {
+  position: fixed;
+  left: 40rpx;
+  bottom: 158rpx;
+  width: 600rpx;
+}
+.desc-content{
+  display: flex;
+  align-items: center
+}
+.desc-text {
+  color: white;
+  /* white-space:pre-wrap; */
+  font-size: 14px;
+}
+.tag-text{
+  padding: 0 0 0 20rpx;
+}
+.tag{
+  margin-top: 20rpx;
+}
+.huati{
+  width:23rpx;
+  height: 23rpx;
+}
+/* 底部区域  */
+.footer {
+  position: fixed;
+  bottom: 0;
+  display:flex;
+  padding: 5rpx 0;
+  width: 100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.apply {
+  display:flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+  /* margin: 0 auto; */
+  /* width: 100rpx; */
+  font-size: 16px;
+  color: #A1A1A1;
+}
+.apply-active{
+  color: #FFFFFF;
+}
+
+/* 评论区域  */
+.talks-layer {
+  position: absolute;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  overflow: hidden;
+  /* background-color: blue; */
+}
+
+.layer-white-space {
+  height: 100%;
+  width: 100%;
+  background-color: #ccc;
+  opacity: .5;
+  /* background-color: green; */
+}
+
+.talks {
+  position: absolute;
+  height: 900rpx;
+  width: 100%;
+  bottom: 0rpx;
+  /* background-color: #0D0D0D; */
+  background: rgba(13, 13, 13, 0.9);
+  border-radius: 20rpx 20rpx 0 0;
+  /* background-color: red; */
+}
+
+.talk-header {
+  width: 100%;
+  height: 70rpx;
+  padding-top: 30rpx;
+  text-align: center;
+}
+
+.talk-body {
+  height: 700rpx;
+}
+
+.talk-footer {
+  /* position: fixed;
+  bottom: 0; */
+  padding: 10rpx 30rpx;
+}
+.user-image{
+  position: relative
+}
+
+.user-image .userinfo-add{
+  position: absolute;
+  top: 92rpx;
+  width: 46rpx;
+  height: 46rpx;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+/* 顶部元素  */
+
+.talk-count {
+  font-size: 14px;
+  height: 40rpx;
+  color: #6b696a;
+}
+
+.talk-close {
+  position: absolute;
+  top: 40rpx;
+  right: 40rpx;
+  width: 22rpx;
+  height: 22rpx;
+}
+
+/* 中部元素  */
+
+.talk-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  color: white;
+}
+
+.talk-item-left {
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx 30rpx;
+}
+
+.talk-item-face {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+}
+
+.talk-item-right {
+  width: 100%;
+  /* border-bottom: solid 1rpx #6a6869; */
+  margin-right: 30rpx;
+  /* margin-bottom: 20rpx; */
+  padding:0 0 20rpx 0;
+  border-bottom: 1px solid  #292527;
+}
+
+.talk-item-nickname {
+  font-size: 13px;
+  color: #A1A1A1;
+}
+
+.talk-item-content {
+  display: block;
+  margin-right: 30rpx;
+  width: 100%;
+  font-size: 16px;
+  /* white-space: pre-line; */
+}
+
+.talk-item-time {
+  font-size: 12px;
+  color: #5B5B5B;
+  display:block;
+}
+
+/* 底部元素  */
+
+.talk-input {
+  padding: 10rpx 20rpx;
+  background:#ffffff;
+  border-radius: 30rpx;
+  text-indent: 10rpx;
+  font-size: 16px
+}
+
+.nodata{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 400rpx;
 }

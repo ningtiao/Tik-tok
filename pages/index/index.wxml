@@ -1,13 +1,159 @@
 <!--index.wxml-->
-<view class="container" catchtap="changePlayStatus" bindtouchstart="touchStart" bindtouchend="touchEnd" bindtouchcancel="touchCancel">
-  <view class="animation-wrapper" animation="{{animation}}">
-    <block wx:for="{{videos}}" wx:key="{{item.videoUrl}}">
-      <view class="animation-image-wrapper">
-        <image mode="aspectFill" class="animation-image" src="{{item.poster}}"></image>
+<wxs src="../../utils/utils.wxs" module="tools"></wxs>
+<view class="container1" bindtap="changePlayStatus">
+  <!-- <view class='content' wx:if="{{videos.length!=0}}"> -->
+    <view class="animation-wrapper" animation="{{animation}}">
+      <block wx:for="{{videos}}" wx:key="{{item.poster}}">
+        <view class="animation-image-wrapper">
+          <image class="animation-image" src="{{item.poster}}"></image>
+        </view>
+      </block>
+    </view>
+      <!-- 弹出组件  -->
+    <modal title='给明星送金币(个)' gold="{{gold}}" id="modalShow"  multiline='true' bindinputCancel='onInputCancel' bindinputConfirm='onInputConfirm' wx:if='{{ addingText }}'/>
+
+    <video class="vvideo" bindtimeupdate="bindtimeupdate" id="kdvideo" bindtouchstart="touchStart" bindtouchend="touchEnd" bindtouchcancel="touchCancel"  binderror="binderror" autoplay="{{autoplay}}" objectFit="cover" hidden="{{animationShow}}" src="{{videos[videoIndex].videoUrl}}" bindplay="bindplay" controls="{{controls}}" loop="true">
+      <cover-view class="tools">
+        <cover-view class='user-image'>
+          <cover-image class="userinfo-avatar" wx:if="{{!videos[videoIndex].icon && !userData.headPic}}" data-lecturerId="{{videos[videoIndex].lecturerId}}" catchtap='goUserHome' src="/assets/image/userImage.png"></cover-image>
+          <cover-image class="userinfo-avatar" wx:elif="{{!videos[videoIndex].icon}}"  data-lecturerId="{{videos[videoIndex].lecturerId}}" catchtap='goUserHome' src="{{userData.headPic}}"></cover-image>
+<cover-image class="userinfo-avatar" wx:else data-lecturerId="{{videos[videoIndex].lecturerId}}" catchtap='goUserHome' src="{{videos[videoIndex].icon}}"></cover-image>
+
+
+          <cover-image class="userinfo-add" wx:if="{{videos[videoIndex].isfans == 0}}" src="/assets/image/add.png" data-index="{{videoIndex}}" data-lecturerId="{{videos[videoIndex].lecturerId}}" catchtap='addLecturerFans'></cover-image>
+          <cover-image class="userinfo-add" wx:else src="/assets/image/guanzhu.png" data-index="{{videoIndex}}" data-lecturerId="{{videos[videoIndex].lecturerId}}" catchtap='delLecturerFans'></cover-image>
+        </cover-view>
+        <cover-view>
+          <cover-image class="icon right-icon" data-likeNum="{{videos[videoIndex].likenum}}"  data-index="{{videoIndex}}" data-videoId="{{videos[videoIndex].contentId}}"  wx:if="{{videos[videoIndex].isLike == 0}}" src='/assets/image/start.png' catchtap='doubleTap'></cover-image>
+          <cover-image class="icon right-icon" wx:else src='/assets/image/active.png'></cover-image>
+          <cover-view class="text">{{videos[videoIndex].likenum}}</cover-view>
+        </cover-view>
+        <cover-view catchtap='showTalks' data-videoId="{{videos[videoIndex].contentId}}" data-commnetnum="{{videos[videoIndex].commnetnum}}">
+          <cover-image class="icon right-icon" src='/assets/image/content.png'></cover-image>
+          <cover-view class="text">{{videos[videoIndex].commnetnum}}</cover-view>
+        </cover-view>
+        <cover-view>
+          <cover-image class="icon right-icon" src='/assets/image/shang.png' catchtap='onShowModal' data-rewardNum="{{videos[videoIndex].rewardNum}}"  data-index="{{videoIndex}}"  data-conid="{{videos[videoIndex].contentId}}" data-lecid="{{videos[videoIndex].lecturerId}}"></cover-image>
+          <cover-view class="text">{{videos[videoIndex].rewardNum}}</cover-view>
+        </cover-view>
+      </cover-view>
+      <!-- 暂停播放按钮  -->
+      <!-- <cover-view class='icon-box' wx:if="{{!playState && !animationShow}}" bindtap='play'>
+        <cover-image class="icon-play" wx:if="{{!playState && !animationShow}}" src='/assets/image/play.png' hidden='{{isPlay}}'></cover-image>
+      </cover-view> -->
+
+
+
+      <!-- 进度条  -->
+      <cover-view class="jindu-back"></cover-view>
+      <cover-view class="jindu" style='width: {{percent}}%'></cover-view>
+
+      <!-- 描述  -->
+      <cover-view class="desc">
+
+        <cover-view class='desc-content tag-content'>
+          <cover-image class="icon huati" src='/assets/image/huati.png'></cover-image>
+          <cover-view class="desc-text tag-text" wx:key="index" wx:for="{{videos[videoIndex].tagList}}">{{item.tagName}}</cover-view>
+        </cover-view>
+        <cover-view class='desc-content tag'>
+          <cover-view class="desc-text">{{videos[videoIndex].description}}</cover-view>
+        </cover-view>
+      </cover-view>
+
+      <!-- 底部 -->
+      <cover-view class="footer">
+        <cover-view class='apply apply-active'>
+          <cover-view>最新</cover-view>
+        </cover-view>
+        <cover-view class='apply' catchtap='goFollow'>
+          <cover-view>关注</cover-view>
+        </cover-view>
+        <cover-view class='apply' catchtap='goAddVideo'>
+          <cover-image class="icon" src='/assets/image/addVideo.png' bindtap='apply'></cover-image>
+        </cover-view>
+        <cover-view class='apply' catchtap='goSearch'>
+        <cover-view>发现</cover-view>
+        </cover-view>
+        <cover-view class='apply' catchtap='goHome'>
+          <cover-view>我的</cover-view>
+        </cover-view>
+      </cover-view>
+    </video>
+    <image class="play-btn" wx:if="{{!playState && !animationShow}}" src="/assets/image/play.png"></image>
+    <!-- <progress class="progress" percent="{{percent}}" activeColor="#ffffff" backgroundColor="#A9A9A9" stroke-width="1"  wx:if="{{!animationShow}}" /> -->
+
+    <!-- 整个评论区  -->
+  <view class='talks-layer' animation='{{talksAnimationData}}'>
+    <!-- 主要作用是点击后隐藏评论区  -->
+    <view class='layer-white-space' catchtap='hideTalks'>
+    </view>
+    <!-- 评论区  -->
+    <view class='talks'>
+      <!-- 评论头部  -->
+      <view class='talk-header' catchtap='hideTalks'>
+        <view class='talk-count'>{{totalCount}} 条评论</view>
+        <image src='/assets/image/close.png' class='talk-close'></image>
       </view>
-    </block>
+      <view class='talk-footer'>
+        <input class='talk-input' value="{{inputValue}}" bindinput ="contentInput"  bindconfirm='addComment' type='text' placeholder='说点什么吧…'></input>
+      </view>
+      <!-- 评论体  -->
+      <scroll-view class='talk-body' scroll-y="true" bindscrolltolower="onScrollLoad">
+        <view class='talk-item' wx:for="{{commentList}}" wx:key="index">
+          <view class='talk-item-left'>
+            <image class='talk-item-face' wx:if="{{videos[videoIndex].icon == ''}}" src='/assets/image/userImage.png'></image>
+            <image class='talk-item-face' wx:else src="{{videos[videoIndex].icon}}"></image>
+          </view>
+          <view class='talk-item-right'>
+            <text class='talk-item-nickname'>{{item.nickName}}</text>
+            <text class='talk-item-content'>{{item.cont}}</text>
+            <text class='talk-item-time'>{{tools.formatDate(item.createTimeMilli)}}</text>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="weui-loadmore weui-loadmore_line" wx:if='{{hasmoreData}}'>
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无更多数据</view>
+      </view>
+      <view class="weui-loadmore" wx:if="{{hiddenloading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+      </view>
+      <!-- 评论底部  -->
+    </view>
   </view>
-  <video class="vvideo" bindtimeupdate="bindtimeupdate" id="kdvideo" binderror="binderror" autoplay="{{autoplay}}" hidden="{{animationShow}}" objectFit="fill" src="{{videos[videoIndex].videoUrl}}" bindplay="bindplay"  controls="{{controls}}" loop="true"></video>
-  <image class="play-btn" wx:if="{{!playState && !animationShow}}" src="/assets/image/play.png"></image>
-  <progress class="progress" percent="{{percent}}" activeColor="#ffffff" backgroundColor="#A9A9A9" stroke-width="1"  wx:if="{{!animationShow}}" />
+  <!-- <toast id='toast'></toast> -->
+  <!-- 右侧区域  -->
+  </view>
+  <view class='content' wx:if="{{nodata}}">
+    <view class='tab-content-list'>
+      <view class='nodata'>
+        <image src="/assets/image/data.png"></image>
+      </view>
+      <view class='center'>
+        <text>亲,没有获取到数据哦!</text>
+      </view>
+    </view>
+
+  <!-- 底部 -->
+  <view class="footer">
+    <!-- <cover-view class=''>
+      最新
+    </cover-view> -->
+    <view class='apply apply-active'>
+      <view>最新</view>
+    </view>
+    <view class='apply' catchtap='goFollow'>
+      <view>关注</view>
+    </view>
+    <view class='apply' catchtap='goAddVideo'>
+      <image class="icon" src='/assets/image/addVideo.png' bindtap='apply'></image>
+    </view>
+    <view class='apply' catchtap='goSearch'>
+      <view>发现</view>
+    </view>
+    <view class='apply' catchtap='goHome'>
+      <view>我的</view>
+    </view>
+  </view>
+  <!-- </view> -->
 </view>

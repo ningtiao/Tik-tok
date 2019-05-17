@@ -1,0 +1,56 @@
+function getTextByArray(arr) {
+  console.log(arr)
+  console.log(JSON.stringify(arr), '88888')
+  var str = "";
+  for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i].nickName, '555')
+    if (arr[i].nickName === '') {
+      str += '未命名' + ",";
+    } else {
+      str += arr[i].nickName + ",";
+    }
+
+  }
+  console.log(str.length, '44444')
+  //去掉最后一个逗号(如果不需要去掉，就不用写)
+  if (arr.length > 0) {
+    str = str.substring(0, str.length - 1);
+  }
+  return str;
+}
+
+var formatDate = function (timestamp, option) {
+  var date = getDate(parseInt(timestamp));
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  var day = date.getDate()
+  var hour = function () {
+    if (date.getHours() < 10) {  //补‘0’
+      return '0' + date.getHours()
+    }
+    return date.getHours();
+  }
+  var minute = function () {
+    if (date.getMinutes() < 10) {
+      return '0' + date.getMinutes()
+    }
+    return date.getMinutes();
+  }
+  var second = function () {
+    if (date.getSeconds() < 10) {
+      return '0' + date.getSeconds()
+    }
+    return date.getSeconds();
+  }
+
+  if (option == 'notime') {  //不需要时间
+    return year + '-' + month + '-' + day;
+  }
+  // year + '-' + 
+  return month + '-' + day + ' ' + hour() + ':' + minute() + ":" + second();
+}
+
+module.exports = {
+  getTextByArray: getTextByArray,
+  formatDate: formatDate
+}
