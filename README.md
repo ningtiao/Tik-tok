@@ -15,8 +15,8 @@
 
 ![image](https://github.com/yjx-passion/vue2.0-music-app/blob/master/src/components/img/music.png)-->
 
-<img width="375" height="667" src="https://github.com/yjx-passion/tik-tok/blob/master/assets/image/index.png"/>
-<img width="375" height="667" src="https://github.com/yjx-passion/tik-tok/blob/master/assets/image/contentmodal.png"/>
+<img width="375" height="667" src="https://github.com/endless-z/tik-tok/blob/master/assets/image/index.png"/>
+<img width="375" height="667" src="https://github.com/endless-z/tik-tok/blob/master/assets/image/contentmodal.png"/>
 
 ## 项目运行
 
