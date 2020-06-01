@@ -11,7 +11,6 @@
 
 ## 首页
 
-
 <img width="375" height="667" src="https://github.com/endless-z/tik-tok/blob/master/assets/image/index.png"/>
 <img width="375" height="667" src="https://github.com/endless-z/tik-tok/blob/master/assets/image/contentmodal.png"/>
 
