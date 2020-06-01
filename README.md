@@ -20,6 +20,6 @@
 
 ## 项目运行
 
-git clone https://github.com/yjx-passion/tik-tok.git
+git clone https://github.com/endless-z/tik-tok.git
 
 用微信开发者工具打开, 导入代码片段即查看效果
